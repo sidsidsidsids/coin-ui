@@ -39,12 +39,12 @@ export default async function Home() {
   return (
     <div className="bg-slate-700 grid items-center min-h-screen gap-16 sm:p-2 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col items-center gap-4 row-start-2 items-start">
-        <section className="mb-14 w-full max-w-[1016px] text-psbk dark:text-dark-psbk desktop:w-full desktop:min-w-[1016px]">
+        <section className="mb-14 w-full max-w-[1016px] text-psbk desktop:w-full desktop:min-w-[1016px]">
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table className="w-full text-sm text-left rtl:text-right text-gray-900 dark:text-gray-400">
-              <caption className="p-5 text-xl font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+            <table className="w-full text-sm text-left rtl:text-right text-gray-900">
+              <caption className="p-5 text-xl font-semibold text-left rtl:text-right text-gray-900 bg-white">
                 기술 지표 기반 코인 종목 추천
-                <p className="mt-1 text-sm font-normal text-gray-600 dark:text-gray-400">
+                <p className="mt-1 text-sm font-normal text-gray-600">
                   <a href="https://upbit.com/home" className="underline">
                     업비트
                   </a>{" "}
@@ -56,21 +56,21 @@ export default async function Home() {
                   <span className="text-blue-600"> 푸를수록 </span>
                   매도를 추천하는 종목입니다.
                 </p>
-                <p className="mt-1 text-sm font-normal text-gray-600 dark:text-gray-400">
+                <p className="mt-1 text-sm font-normal text-gray-600">
                   하루 전날({data ? data[0].candle_date : "데이터 없음"})까지의
                   데이터를 기반으로 지표를 계산하며, 한국 시간 기준 매일 오전
                   0시 이후에 데이터를 갱신합니다.
                 </p>
-                <p className="mt-1 text-sm font-normal text-gray-400 dark:text-gray-400">
+                <p className="mt-1 text-sm font-normal text-gray-400">
                   이동평균선(MA): 일정 기간 동안의 평균 가격을 의미하며 가격
                   변동과 추세를 파악하기 위한 지표입니다.
                 </p>
-                <p className="mt-1 text-sm font-normal text-gray-400 dark:text-gray-400">
+                <p className="mt-1 text-sm font-normal text-gray-400">
                   RSI: 일정 기간 동안의 상승폭과 하락폭을 비교하는 지표이며
                   일반적으로 70 이상은 과매수, 30 이하는 과매도로 간주합니다.
                 </p>
               </caption>
-              <thead className="text-xs text-gray-800 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <thead className="text-xs text-gray-800 uppercase bg-gray-50">
                 <tr>
                   <th scope="col" className="px-6 py-3">
                     종목 (마켓)
@@ -101,11 +101,11 @@ export default async function Home() {
                     key={coin.name_code}
                     className={`${getRowColor(
                       coin.score
-                    )} border-b dark:border-gray-700`}
+                    )} border-b`}
                   >
                     <th
                       scope="row"
-                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
                     >
                       <span>
                         {coin.korean_name} ({coin.name_code}/KRW)
