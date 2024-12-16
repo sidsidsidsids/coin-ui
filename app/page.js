@@ -101,7 +101,7 @@ export default async function Home() {
                     key={coin.name_code}
                     className={`${getRowColor(
                       coin.score
-                    )} border-b dark:bg-gray-800 dark:border-gray-700`}
+                    )} border-b dark:border-gray-700`}
                   >
                     <th
                       scope="row"
