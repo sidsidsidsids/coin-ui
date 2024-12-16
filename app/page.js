@@ -12,7 +12,7 @@ async function fetchData() {
   const json = await res.json();
   return json;
 }
-
+export const dynamic = "force-dynamic";
 export default async function Home() {
   const data = await fetchData();
 
