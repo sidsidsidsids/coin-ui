@@ -1,3 +1,5 @@
+import { roundTo } from "@/util/mathfunc";
+
 async function fetchData() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URI}`, {
     method: "GET",
@@ -99,9 +101,7 @@ export default async function Home() {
                 {data.map((coin, index) => (
                   <tr
                     key={coin.name_code}
-                    className={`${getRowColor(
-                      coin.score
-                    )} border-b`}
+                    className={`${getRowColor(coin.score)} border-b`}
                   >
                     <th
                       scope="row"
@@ -118,29 +118,31 @@ export default async function Home() {
                     </td>
                     <td className="px-6 py-4">
                       {coin.change_price
-                        ? coin.change_price > 100
-                          ? Number(coin.change_price).toLocaleString("ko-KR")
+                        ? Math.abs(coin.change_price) > 100
+                          ? roundTo(coin.change_price, 2).toLocaleString(
+                              "ko-KR"
+                            )
                           : coin.change_price
                         : 0}
                     </td>
                     <td className="px-6 py-4">
                       {coin.ma_7
                         ? coin.ma_7 > 100
-                          ? Math.round(coin.ma_7, 2).toLocaleString("ko-KR")
+                          ? roundTo(coin.ma_7, 0).toLocaleString("ko-KR")
                           : coin.ma_7
                         : "-"}
                     </td>
                     <td className="px-6 py-4">
                       {coin.ma_14
                         ? coin.ma_14 > 100
-                          ? Math.round(coin.ma_14, 2).toLocaleString("ko-KR")
+                          ? roundTo(coin.ma_14, 0).toLocaleString("ko-KR")
                           : coin.ma_14
                         : "-"}
                     </td>
                     <td className="px-6 py-4">
                       {coin.ma_50
                         ? coin.ma_50 > 100
-                          ? Math.round(coin.ma_50, 2).toLocaleString("ko-KR")
+                          ? roundTo(coin.ma_50, 0).toLocaleString("ko-KR")
                           : coin.ma_50
                         : "-"}
                     </td>
