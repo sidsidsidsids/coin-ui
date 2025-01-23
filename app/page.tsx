@@ -46,7 +46,7 @@ export default async function Home() {
             <table className="w-full text-xs md:text-sm text-left rtl:text-right text-gray-900">
               <caption className="p-3 md:p-5 text-lg md:text-xl font-semibold text-left rtl:text-right text-gray-900 bg-white">
                 기술 지표 기반 코인 종목 추천
-                <p className="mt-1 text-xs md:text-sm font-normal text-gray-600 ">
+                <p className="mt-1 text-xs md:text-sm font-normal text-gray-700 transition-color hover:text-gray-800">
                   <a href="https://upbit.com/home" className="underline">
                     업비트
                   </a>{" "}
@@ -58,16 +58,18 @@ export default async function Home() {
                   <span className="text-blue-600"> 푸를수록 </span>
                   매도를 추천하는 종목입니다.
                 </p>
-                <p className="mt-1 text-xs font-normal text-gray-600 md:text-sm">
-                  하루 전날({data ? data[0].candle_date : "데이터 없음"})까지의
-                  데이터를 기반으로 지표를 계산하며, 한국 시간 기준 매일 오전
-                  0시 이후에 데이터를 갱신합니다.
+                <p className="mt-1 text-xs font-normal text-gray-700 md:text-sm transition-color hover:text-gray-800">
+                  {data
+                    ? `${data[0].candle_date} 오전 9시`
+                    : "(현재 데이터가 없습니다) "}
+                  까지의 데이터를 기반으로 지표를 계산하며, 한국 시간 기준 매일
+                  오전 9시 이후에 데이터를 갱신합니다.
                 </p>
-                <p className="mt-1 text-xs md:text-sm font-normal text-gray-400">
+                <p className="mt-1 text-xs md:text-sm font-normal text-gray-500 transition-color hover:text-gray-800">
                   이동평균선(MA): 일정 기간 동안의 평균 가격을 의미하며 가격
                   변동과 추세를 파악하기 위한 지표입니다.
                 </p>
-                <p className="mt-1 text-xs md:text-sm font-normal text-gray-400">
+                <p className="mt-1 text-xs md:text-sm font-normal text-gray-500 transition-color hover:text-gray-800">
                   RSI: 일정 기간 동안의 상승폭과 하락폭을 비교하는 지표이며
                   일반적으로 70 이상은 과매수, 30 이하는 과매도로 간주합니다.
                 </p>
