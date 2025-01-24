@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { roundTo } from "@/util/mathfunc";
 
 async function fetchData() {
@@ -59,10 +60,10 @@ export default async function Home() {
                   매도를 추천하는 종목입니다.
                 </p>
                 <p className="mt-1 text-xs font-normal text-gray-700 md:text-sm transition-color hover:text-gray-800">
-                  {data
+                  현재 최신 데이터는 : {data
                     ? `${data[0].candle_date} 오전 9시`
                     : "(현재 데이터가 없습니다) "}
-                  까지의 데이터를 기반으로 지표를 계산하며, 한국 시간 기준 매일
+                  부터 24시간 후 까지의 데이터이며, 한국 시간 기준 매일
                   오전 9시 이후에 데이터를 갱신합니다.
                 </p>
                 <p className="mt-1 text-xs md:text-sm font-normal text-gray-500 transition-color hover:text-gray-800">
@@ -111,9 +112,11 @@ export default async function Home() {
                       scope="row"
                       className="px-2 md:px-6 py-1 md:py-3 font-medium whitespace-nowrap"
                     >
-                      <span>
-                        {coin.korean_name} ({coin.name_code}/KRW)
-                      </span>
+                      <Link href={`/${coin.name_code}`}>
+                        <span>
+                          {coin.korean_name} ({coin.name_code}/KRW)
+                        </span>
+                      </Link>
                     </th>
                     <td className="px-2 md:px-6 py-1.5 md:py-3">
                       {coin.trade_price > 100
