@@ -18,26 +18,6 @@ export const dynamic = "force-dynamic";
 export default async function Home() {
   const data = await fetchData();
 
-  function getRowColor(score) {
-    switch (score) {
-      case 3:
-        return "bg-red-400";
-      case 2:
-        return "bg-red-200";
-      case 1:
-        return "bg-red-50";
-      case 0:
-        return "bg-white";
-      case -1:
-        return "bg-blue-50";
-      case -2:
-        return "bg-blue-200";
-      case -3:
-        return "bg-blue-400";
-      default:
-        return "bg-white";
-    }
-  }
   return (
     <div className="bg-slate-900 overflow-x-auto grid items-center min-h-screen gap-16 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col items-center gap-4 row-start-2 items-start">
