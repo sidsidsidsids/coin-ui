@@ -1,9 +1,15 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { Suspense } from "react";
+import { useEffect, Suspense } from "react";
 
 export default function Dialog({ children }: { children: React.ReactNode }) {
   const router = useRouter();
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
   return (
     <div
       className="w-screen h-screen top-0 left-0 bg-black/50 fixed z-10"
@@ -14,7 +20,7 @@ export default function Dialog({ children }: { children: React.ReactNode }) {
     >
       <div className="flex flex-col items-center justify-center w-full h-full">
         <div
-          className="bg-white p-4 rounded-lg w-3/4 h-1/4 overflow-hidden"
+          className="bg-white p-4 rounded-lg w-3/4 h-1/3 overflow-hidden"
           onClick={(e) => e.stopPropagation()}
         >
           <Suspense fallback={<div>Loading...</div>}>

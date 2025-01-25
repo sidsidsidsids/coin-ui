@@ -1,9 +1,15 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { Suspense } from "react";
+import { useEffect, Suspense } from "react";
 
 export default function Modal({ children }: { children: React.ReactNode }) {
   const router = useRouter();
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
   return (
     <div
       className="w-screen h-screen top-0 left-0 bg-black/50 fixed z-2"

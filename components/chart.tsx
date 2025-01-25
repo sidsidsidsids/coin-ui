@@ -63,17 +63,16 @@ export default function Chart({
     if (!chartRef.current || !data.length) return;
 
     const labels = data.map((item) => item.candle_date); // X축 라벨 (날짜)
-    const tradePrices = data.map((item) => item.trade_price); // Trade Price
+    const tradePrices = data.map((item) => item.trade_price); // 종가
     const ma7 = data.map((item) => item.ma_7); // MA 7
     const ma14 = data.map((item) => item.ma_14); // MA 14
     const ma50 = data.map((item) => item.ma_50); // MA 50
     const rsi = data.map((item) => item.rsi); // RSI
 
-    // Chart.js 인스턴스 생성
     const chart = new ChartJS(chartRef.current, {
       type: "line",
       data: {
-        labels, // X축 데이터 (날짜)
+        labels,
         datasets: [
           {
             label: "종가",
@@ -107,7 +106,7 @@ export default function Chart({
             label: "RSI",
             data: rsi,
             borderColor: "rgba(226,232,240,0.8)",
-            backgroundColor: "rgba(226,232,240,0.5)",
+            backgroundColor: "rgba(226,232,240,0.6)",
             borderWidth: 0.2,
             yAxisID: "y1",
             fill: true,
@@ -188,13 +187,12 @@ export default function Chart({
         },
         elements: {
           point: {
-            radius: 1,
+            radius: 2,
           },
         },
       },
     });
 
-    // 컴포넌트 언마운트 시 차트 제거
     return () => {
       chart.destroy();
     };

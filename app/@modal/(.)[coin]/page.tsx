@@ -150,6 +150,9 @@ export default async function CoinModal({
             <p>중기(14일) : {forecast.mediumTermAccuracy}%</p>
             <p>장기(50일) : {forecast.longTermAccuracy}%</p>
           </div>
+          <p className="text-md mt-2 font-normal text-gray-600">
+            (데스크탑에서 차트 확인 가능)
+          </p>
         </Dialog>
       </div>
     </>
