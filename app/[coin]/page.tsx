@@ -38,6 +38,7 @@ async function fetchCoin(coin: string) {
 
 async function calculateForecast(data: RawData) {
   const size = data.length;
+  const coinName = data[0].korean_name;
   let shortTermForecast = 0;
   let shortTermCount = 0;
   let mediumTermForecast = 0;
@@ -112,6 +113,7 @@ async function calculateForecast(data: RawData) {
     recommendation = "매도";
   }
   return {
+    coinName,
     shortTermAccuracy,
     mediumTermAccuracy,
     longTermAccuracy,
@@ -136,7 +138,9 @@ export default async function CoinModal({
       </div>
       <div className="block md:hidden">
         <Dialog>
-          <p className="text-lg font-extrabold">{coin}/KRW</p>
+          <p className="text-lg font-extrabold">
+            {forecast.coinName}({coin}/KRW)
+          </p>
           <p>
             <span className="font-extrabold">
               기술지표 기반 추천 : {forecast.recommendation}
@@ -145,12 +149,12 @@ export default async function CoinModal({
           <p className="text-md mt-2 font-normal">
             최근(최대 100일) 추천 정확도
           </p>
-          <div className="pt-1.5 font-normal">
+          <div className="font-normal">
             <p>단기(1일) : {forecast.shortTermAccuracy}%</p>
             <p>중기(14일) : {forecast.mediumTermAccuracy}%</p>
             <p>장기(50일) : {forecast.longTermAccuracy}%</p>
           </div>
-          <p className="text-md mt-2 font-normal text-gray-600">
+          <p className="text-sm mt-0.5 font-normal text-gray-600">
             (데스크탑에서 차트 확인 가능)
           </p>
         </Dialog>

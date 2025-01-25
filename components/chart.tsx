@@ -14,6 +14,7 @@ type RawDataItem = {
 };
 type RawData = RawDataItem[];
 type ForecastData = {
+  coinName: string;
   shortTermAccuracy: string | number;
   mediumTermAccuracy: string | number;
   longTermAccuracy: string | number;
@@ -118,7 +119,7 @@ export default function Chart({
         plugins: {
           title: {
             display: true,
-            text: `${name_code}/KRW 차트`,
+            text: `${forecast.coinName}(${name_code}/KRW) 차트`,
             position: "top",
             font: {
               size: 36,
