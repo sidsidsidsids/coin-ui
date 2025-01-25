@@ -2,11 +2,11 @@
 import { useRouter } from "next/navigation";
 import { Suspense } from "react";
 
-export default function Modal({ children }: { children: React.ReactNode }) {
+export default function Dialog({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   return (
     <div
-      className="w-screen h-screen top-0 left-0 bg-black/50 fixed z-2"
+      className="w-screen h-screen top-0 left-0 bg-black/50 fixed z-10"
       onClick={(e) => {
         e.stopPropagation();
         router.back();
@@ -14,12 +14,12 @@ export default function Modal({ children }: { children: React.ReactNode }) {
     >
       <div className="flex flex-col items-center justify-center w-full h-full">
         <div
-          className="bg-white p-4 rounded-lg w-5/6 h-5/6 overflow-hidden"
+          className="bg-white p-4 rounded-lg w-3/4 h-1/4 overflow-hidden"
           onClick={(e) => e.stopPropagation()}
         >
-          <div>
-            <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
-          </div>
+          <Suspense fallback={<div>Loading...</div>}>
+            <div>{children}</div>
+          </Suspense>
         </div>
       </div>
     </div>

@@ -1,5 +1,4 @@
-import Link from "next/link";
-import { roundTo } from "@/util/mathfunc";
+import TableRow from "@/components/tableRow";
 
 async function fetchData() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URI}`, {
@@ -60,11 +59,10 @@ export default async function Home() {
                   매도를 추천하는 종목입니다.
                 </p>
                 <p className="mt-1 text-xs font-normal text-gray-700 md:text-sm transition-color hover:text-gray-800">
-                  현재 최신 데이터는 : {data
+                  현재 최신 데이터는 {data
                     ? `${data[0].candle_date} 오전 9시`
                     : "(현재 데이터가 없습니다) "}
-                  부터 24시간 후 까지의 데이터이며, 한국 시간 기준 매일
-                  오전 9시 이후에 데이터를 갱신합니다.
+                  부터 24시간 후 까지의 데이터입니다.
                 </p>
                 <p className="mt-1 text-xs md:text-sm font-normal text-gray-500 transition-color hover:text-gray-800">
                   이동평균선(MA): 일정 기간 동안의 평균 가격을 의미하며 가격
@@ -102,61 +100,7 @@ export default async function Home() {
               </thead>
               <tbody className="">
                 {data.map((coin, index) => (
-                  <tr
-                    key={coin.name_code}
-                    className={`${getRowColor(
-                      coin.score
-                    )} border-b transition-colors duration-200 ease-in-out hover:bg-slate-700 hover:text-white`}
-                  >
-                    <th
-                      scope="row"
-                      className="px-2 md:px-6 py-1 md:py-3 font-medium whitespace-nowrap"
-                    >
-                      <Link href={`/${coin.name_code}`}>
-                        <span>
-                          {coin.korean_name} ({coin.name_code}/KRW)
-                        </span>
-                      </Link>
-                    </th>
-                    <td className="px-2 md:px-6 py-1.5 md:py-3">
-                      {coin.trade_price > 100
-                        ? Number(coin.trade_price).toLocaleString("ko-KR")
-                        : coin.trade_price}
-                    </td>
-                    <td className="px-2 md:px-6 py-1.5 md:py-3">
-                      {coin.change_price
-                        ? Math.abs(coin.change_price) > 100
-                          ? roundTo(coin.change_price, 2).toLocaleString(
-                              "ko-KR"
-                            )
-                          : coin.change_price
-                        : 0}
-                    </td>
-                    <td className="px-6 py-4 hidden md:table-cell">
-                      {coin.ma_7
-                        ? coin.ma_7 > 100
-                          ? roundTo(coin.ma_7, 0).toLocaleString("ko-KR")
-                          : coin.ma_7
-                        : "-"}
-                    </td>
-                    <td className="px-6 py-4 hidden md:table-cell">
-                      {coin.ma_14
-                        ? coin.ma_14 > 100
-                          ? roundTo(coin.ma_14, 0).toLocaleString("ko-KR")
-                          : coin.ma_14
-                        : "-"}
-                    </td>
-                    <td className="px-6 py-4 hidden md:table-cell">
-                      {coin.ma_50
-                        ? coin.ma_50 > 100
-                          ? roundTo(coin.ma_50, 0).toLocaleString("ko-KR")
-                          : coin.ma_50
-                        : "-"}
-                    </td>
-                    <td className="px-6 py-4 hidden md:table-cell">
-                      {coin.rsi ? coin.rsi : "-"}
-                    </td>
-                  </tr>
+                  <TableRow key={coin.name_code} coin={coin} />
                 ))}
               </tbody>
             </table>
